@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sing-box-config-converter"
+version = "0.1.0"
+description = "Generate sing-box client configs from server configs, with QR code output"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+qr = ["qrcode[pil]>=7.4"]
+
+[project.scripts]
+sing-box-gen-client = "generate_client_config:main"
+
+[dependency-groups]
+dev = ["qrcode[pil]>=7.4"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+include = ["generate_client_config.py"]
