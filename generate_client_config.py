@@ -638,12 +638,6 @@ def parse_args() -> argparse.Namespace:
         help="Output path for the generated client config (default: client.json).",
     )
     p.add_argument(
-        "--indent",
-        type=int,
-        default=2,
-        help="JSON indentation spaces (default: 2). Use 0 for compact.",
-    )
-    p.add_argument(
         "--show-terminal-qr",
         action="store_true",
         help="Generate a QR code for the client config in the terminal.",
@@ -686,10 +680,9 @@ def main() -> None:
         print(f"[error] {e}", file=sys.stderr)
         sys.exit(1)
 
-    indent = args.indent if args.indent > 0 else None
     output_path = Path(args.output)
     with output_path.open("w", encoding="utf-8") as f:
-        json.dump(client_cfg, f, indent=indent, ensure_ascii=False)
+        json.dump(client_cfg, f, indent=2, ensure_ascii=False)
         f.write("\n")
 
     print(f"[ok] Client config written to: {output_path}")
