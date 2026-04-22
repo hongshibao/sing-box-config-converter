@@ -10,6 +10,20 @@ Supported transports: plain TCP/UDP, TLS (including Reality / XTLS)
 - Python 3.10+
 - [uv](https://docs.astral.sh/uv/)
 
+## Quick Start with `uvx`
+
+No installation required — run directly with:
+
+```bash
+uvx sing-box-config-converter server.json
+```
+
+With QR code support:
+
+```bash
+uvx --with "sing-box-config-converter[qr]" sing-box-config-converter server.json
+```
+
 ## Installation
 
 ```bash
