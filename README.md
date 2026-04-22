@@ -21,7 +21,7 @@ The `--extra qr` flag installs `qrcode[pil]` for QR code support. Omit it if you
 ## Usage
 
 ```bash
-uv run sing-box-gen-client <server_config> [server_address] [options]
+uv run sing-box-config-converter <server_config> [server_address] [options]
 ```
 
 ### Arguments
@@ -45,22 +45,22 @@ uv run sing-box-gen-client <server_config> [server_address] [options]
 
 Generate a client config (server address auto-detected):
 ```bash
-uv run sing-box-gen-client /etc/sing-box/config.json
+uv run sing-box-config-converter /etc/sing-box/config.json
 ```
 
 Specify the server address explicitly:
 ```bash
-uv run sing-box-gen-client /etc/sing-box/config.json 203.0.113.42
+uv run sing-box-config-converter /etc/sing-box/config.json 203.0.113.42
 ```
 
 Use TUN mode and save a QR code image:
 ```bash
-uv run sing-box-gen-client config.json 203.0.113.42 --use-tun --qr-dir ./qr
+uv run sing-box-config-converter config.json 203.0.113.42 --use-tun --qr-dir ./qr
 ```
 
 Print a QR code in the terminal:
 ```bash
-uv run sing-box-gen-client config.json --show-terminal-qr
+uv run sing-box-config-converter config.json --show-terminal-qr
 ```
 
 ## Output

@@ -6,6 +6,10 @@ build-backend = "hatchling.build"
 name = "sing-box-config-converter"
 version = "0.1.0"
 description = "Generate sing-box client configs from server configs, with QR code output"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "thinkpoet", email = "shibaohong@outlook.com" }]
+keywords = ["sing-box", "proxy", "vpn", "hysteria2", "shadowsocks", "trojan"]
 requires-python = ">=3.10"
 dependencies = []
 
@@ -13,7 +17,7 @@ dependencies = []
 qr = ["qrcode[pil]>=7.4"]
 
 [project.scripts]
-sing-box-gen-client = "generate_client_config:main"
+sing-box-config-converter = "generate_client_config:main"
 
 [dependency-groups]
 dev = ["qrcode[pil]>=7.4"]
