@@ -3,7 +3,6 @@
 Generate a [sing-box](https://sing-box.sagernet.org) **client config** from a **server config**, with optional QR code output.
 
 Supported protocols: `hysteria2`, `shadowsocks`, `trojan`  
-Supported transports: plain TCP/UDP, TLS (including Reality / XTLS)
 
 ## Requirements
 
@@ -77,6 +76,11 @@ Print a QR code in the terminal:
 uv run sing-box-config-converter config.json --show-terminal-qr
 ```
 
+If `--show-terminal-qr` QR code is too large to fit in the terminal, try `--qr-dir` to save QR code as a PNG, and use `imgcat` to display it:
+```bash
+uvx imgcat qr_client_config.png
+```
+
 ## Output
 
 The generated client config includes:
@@ -88,5 +92,4 @@ The generated client config includes:
 
 ## Notes
 
-- `__SERVER_ADDRESS__` placeholders in the output are replaced with the provided (or auto-detected) server address.
 - QR codes encode the full client config JSON. Large configs may exceed QR capacity; consider sharing the config file directly if the QR is unreadable.
