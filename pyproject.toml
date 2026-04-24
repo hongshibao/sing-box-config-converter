@@ -32,7 +32,6 @@ include = ["generate_client_config.py"]
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
 branch = "main"
-build_command = "uv build"
-commit_parser = "angular"
+commit_parser = "conventional"
 upload_to_pypi = false       # PyPI publish is handled by pypa/gh-action-pypi-publish
 upload_to_release = true     # attach dist assets to the GitHub release
