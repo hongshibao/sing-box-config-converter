@@ -1,40 +1,33 @@
 name: Build and Publish
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+    concurrency: release
+    environment: pypi
+    permissions:
+      id-token: write   # required for PyPI trusted publishing
+      contents: write   # required for PSR to push version commits and tags
+
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0          # PSR needs full git history to determine next version
 
       - name: Install uv
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
 
-      - name: Build
-        run: uv build
-
-      - name: Upload dist artifacts
-        uses: actions/upload-artifact@v7
+      - name: Python Semantic Release
+        id: release
+        uses: python-semantic-release/python-semantic-release@v10.5.3
         with:
-          name: dist
-          path: dist/
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: pypi
-    permissions:
-      id-token: write  # required for PyPI trusted publishing
-
-    steps:
-      - name: Download dist artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to PyPI
+        if: steps.release.outputs.released == 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
