@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sing-box-config-converter"
-version = "1.1.0"
+version = "1.2.0"
 description = "Generate sing-box client configs from server configs, with QR code output"
 readme = "README.md"
 license = { text = "MIT" }
